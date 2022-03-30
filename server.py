@@ -19,6 +19,9 @@ connected = []
 clients = []
 print("===========================  WELCOME TO CHAAAATROOM  ===========================")
 
+t = time.localtime()
+current_time = time.strftime("%H:%M", t)
+
 while True:
     print('Waiting for connections...')
     clientSocket, clientAddress = serverSocket.accept()
@@ -28,14 +31,11 @@ while True:
     clients.append(bot)
     print(bot, "joined the chat")
 
-    message = input("Do you want to add more users, type yes or no? \nServer:")
+    message = input("Do you want to add more users, type yes or no?"+ "\n"+current_time+", Server:")
     if message == 'no':
         break
 
 
-
-t = time.localtime()
-current_time = time.strftime("%H:%M", t)
 
 while True:
     # The chat the bots are going to answear back to
@@ -54,10 +54,9 @@ while True:
             bot_index = connected.index(c)
             bot_name = clients[bot_index]
             c.close()
-            print(bot_name, " has disconected")
+            print(bot_name, "has disconected")
             connected.remove(c)
             clients.remove(bot_name)
-
         break
 
 
